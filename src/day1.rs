@@ -3,33 +3,61 @@ use std::io::{BufRead, BufReader};
 use crate::day::Day;
 
 pub struct Day1 {
-    p1: i64,  // TODO: modify
-    p2: i64,  // TODO: modify
+    depths: Vec<usize>,
 }
 
 impl Day1 {
     pub fn load(filename: &str) -> Day1 {
-        let mut numbers: Vec<i64> = Vec::new();  // TODO: remove
+        let mut depths: Vec<usize> = Vec::new();
 
         let file = File::open(filename).unwrap();
         let reader = BufReader::new(file);
 
         for line in reader.lines() {
             let l = &line.unwrap();
-            numbers.push(l.parse::<i64>().unwrap());  // TODO: remove
+            depths.push(l.parse::<usize>().unwrap());
         }
 
-        Day1 { p1: numbers[0], p2: numbers[1] }  // TODO: modify
+        Day1 { depths }
+    }
+
+    fn increases(&self) -> usize {
+        let mut count = 0;
+        for n in 1..self.depths.len() {
+            if self.depths[n-1] < self.depths[n] {
+                count += 1;
+            }
+        }
+        count
+    }
+
+    fn avg_increases(&self, window: usize) -> usize {
+        let mut avg_depths: Vec<f32> = Vec::new();
+        for n in 0..self.depths.len()-window+1 {
+            let mut sum = 0;
+            for i in 0..window {
+                sum += self.depths[n+i];
+            }
+            avg_depths.push((sum as f32)/(window as f32));
+        }
+
+        let mut count = 0;
+        for n in 1..avg_depths.len() {
+            if avg_depths[n-1] < avg_depths[n] {
+                count += 1;
+            }
+        }
+        count
     }
 }
 
 impl Day for Day1 {
-    fn part1(&self) -> Result<i64, &str> {
-        Ok(self.p1)  // TODO: modify
+    fn part1(&self) -> Result<usize, &str> {
+        Ok(self.increases())
     }
 
-    fn part2(&self) -> Result<i64, &str> {
-        Ok(self.p2)  // TODO: modify
+    fn part2(&self) -> Result<usize, &str> {
+        Ok(self.avg_increases(3))
     }
 }
 
@@ -40,20 +68,31 @@ mod tests {
 
     #[test]
     fn test_load() {
-        let d = Day1::load("data/day1_input.txt");  // TODO: modify
-        assert_eq!(d.p1, 69);                       // TODO: modify
-        assert_eq!(d.p2, 70);                       // TODO: modify
+        let d = Day1::load("data/day1_example1.txt");
+        assert_eq!(d.depths.len(), 10);
+    }
+
+    #[test]
+    fn test_increases() {
+        let d = Day1::load("data/day1_example1.txt");
+        assert_eq!(d.increases(), 7);
+    }
+
+    #[test]
+    fn test_avg_increases() {
+        let d = Day1::load("data/day1_example1.txt");
+        assert_eq!(d.avg_increases(3), 5);
     }
 
     #[test]
     fn test_part1() {
-        let d = Day1::load("data/day1_input.txt");  // TODO: modify
-        assert_eq!(d.part1(), Ok(69));
+        let d = Day1::load("data/day1_input.txt");
+        assert_eq!(d.part1(), Ok(1301));
     }
 
     #[test]
     fn test_part2() {
-        let d = Day1::load("data/day1_input.txt");   // TODO: modify
-        assert_eq!(d.part2(), Ok(70));
+        let d = Day1::load("data/day1_input.txt");
+        assert_eq!(d.part2(), Ok(1346));
     }
 }

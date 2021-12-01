@@ -1,27 +1,28 @@
 mod day;
-mod day0;
 mod day1;
 
 use day::Day;
-use day0::Day0;
+use day1::Day1;
 
 fn do_day(n: usize, day: &dyn Day) {
     match day.part1() {
-        Ok(val) => println!("day {} part 1: {}", n, val),
-        Err(msg) => println!("day {} part 1: {}", n, msg),
+        Ok(val) => println!("day {}, part 1: {}", n, val),
+        Err(msg) => println!("day {}, part 1: {}", n, msg),
     }
     match day.part2() {
-        Ok(val) => println!("day {} part 2: {}", n, val),
-        Err(msg) => println!("day {} part 2: {}", n, msg),
+        Ok(val) => println!("day {}, part 2: {}", n, val),
+        Err(msg) => println!("day {}, part 2: {}", n, msg),
     }
 }
 
 fn main() {
     println!("Advent of Code 2021!");
+    println!("See adventofcode.com/2021 for background.");
+    println!("");
 
-    let day0 = Day0::load("data/day0_input.txt");
+    let day1 = Day1::load("data/day1_input.txt");
     let days: Vec<&dyn Day> = vec![
-        &day0,
+        &day1,
     ];
 
     let selected_day = None;
