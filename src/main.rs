@@ -1,8 +1,10 @@
 mod day;
 mod day1;
+mod day2;
 
 use day::Day;
 use day1::Day1;
+use day2::Day2;
 
 fn do_day(n: usize, day: &dyn Day) {
     match day.part1() {
@@ -21,11 +23,13 @@ fn main() {
     println!("");
 
     let day1 = Day1::load("data/day1_input.txt");
+    let day2 = Day2::load("data/day2_input.txt");
     let days: Vec<&dyn Day> = vec![
         &day1,
+        &day2,
     ];
 
-    let selected_day = None;
+    let selected_day: Option<usize> = None;
     match selected_day {
         None => {
             // No day selected, do them all
@@ -34,7 +38,7 @@ fn main() {
             }
         }
         Some(n) => {
-            do_day(n, days[n]);
+            do_day(n-1, days[n-1]);
         }
     }
 }
