@@ -85,14 +85,10 @@ mod tests {
     }
 
     #[test]
-    fn test_part1() {
+    // Test results based on my inputs.  Yours will be different.
+    fn test_soln() {
         let d = Day1::load("data/day1_input.txt");
         assert_eq!(d.part1(), Ok(1301));
-    }
-
-    #[test]
-    fn test_part2() {
-        let d = Day1::load("data/day1_input.txt");
         assert_eq!(d.part2(), Ok(1346));
     }
 }
