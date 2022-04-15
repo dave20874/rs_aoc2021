@@ -5,6 +5,8 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
+mod day8;
 
 use day::Day;
 use day1::Day1;
@@ -13,6 +15,8 @@ use day3::Day3;
 use day4::Day4;
 use day5::Day5;
 use day6::Day6;
+use day7::Day7;
+use day8::Day8;
 
 fn do_day(n: usize, day: &dyn Day) {
     match day.part1() {
@@ -36,6 +40,8 @@ fn main() {
     let day4 = Day4::load("data/day4_input.txt");
     let day5 = Day5::load("data/day5_input.txt");
     let day6 = Day6::load("data/day6_input.txt");
+    let day7 = Day7::load("data/day7_input.txt");
+    let day8 = Day8::load("data/day8_input.txt");
     let days: Vec<&dyn Day> = vec![
         &day1,
         &day2,
@@ -43,6 +49,8 @@ fn main() {
         &day4,
         &day5,
         &day6,
+        &day7,
+        &day8,
     ];
 
     let selected_day: Option<usize> = None;
