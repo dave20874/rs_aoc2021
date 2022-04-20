@@ -1,6 +1,6 @@
+use crate::day::Day;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use crate::day::Day;
 
 pub struct Day3 {
     report_len: usize,
@@ -37,7 +37,10 @@ impl Day3 {
             }
         }
 
-        Day3 { report_len, reports: reports }
+        Day3 {
+            report_len,
+            reports: reports,
+        }
     }
 
     fn gamma(&self) -> u64 {
@@ -48,8 +51,7 @@ impl Day3 {
                 let mask = 1 << position;
                 if (report & mask) > 0 {
                     balance[position] += 1;
-                }
-                else {
+                } else {
                     balance[position] -= 1;
                 }
             }
@@ -73,8 +75,7 @@ impl Day3 {
                 let mask = 1 << position;
                 if (report & mask) > 0 {
                     balance[position] += 1;
-                }
-                else {
+                } else {
                     balance[position] -= 1;
                 }
             }
@@ -90,15 +91,14 @@ impl Day3 {
         result
     }
 
-    fn oxy_recursive(&self, reports:&Vec<u64>, bit_pos: usize) -> u64 {
+    fn oxy_recursive(&self, reports: &Vec<u64>, bit_pos: usize) -> u64 {
         // find most common value for the given bit position
         let mask: u64 = 1 << bit_pos;
         let mut balance: i64 = 0;
         for report in reports {
             if (report & mask) == mask {
                 balance += 1;
-            }
-            else {
+            } else {
                 balance -= 1;
             }
         }
@@ -116,27 +116,25 @@ impl Day3 {
         let retval;
         if filtered.len() == 1 {
             retval = filtered[0]
-        }
-        else {
-            retval = self.oxy_recursive(&filtered, bit_pos-1)
+        } else {
+            retval = self.oxy_recursive(&filtered, bit_pos - 1)
         }
 
         retval
     }
 
     fn oxygen(&self) -> u64 {
-        self.oxy_recursive(&self.reports, self.report_len-1)
+        self.oxy_recursive(&self.reports, self.report_len - 1)
     }
 
-    fn co2_recursive(&self, reports:&Vec<u64>, bit_pos: usize) -> u64 {
+    fn co2_recursive(&self, reports: &Vec<u64>, bit_pos: usize) -> u64 {
         // find most common value for the given bit position
         let mask: u64 = 1 << bit_pos;
         let mut balance: i64 = 0;
         for report in reports {
             if (report & mask) == mask {
                 balance += 1;
-            }
-            else {
+            } else {
                 balance -= 1;
             }
         }
@@ -154,22 +152,20 @@ impl Day3 {
         let retval;
         if filtered.len() == 1 {
             retval = filtered[0]
-        }
-        else {
-            retval = self.co2_recursive(&filtered, bit_pos-1)
+        } else {
+            retval = self.co2_recursive(&filtered, bit_pos - 1)
         }
 
         retval
     }
 
     fn co2(&self) -> u64 {
-        self.co2_recursive(&self.reports, self.report_len-1)
+        self.co2_recursive(&self.reports, self.report_len - 1)
     }
 }
 
 impl Day for Day3 {
     fn part1(&self) -> Result<usize, &str> {
-
         Ok((self.gamma() * self.epsilon()) as usize)
     }
 

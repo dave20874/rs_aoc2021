@@ -1,8 +1,7 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 use crate::day::Day;
 use std::cmp::min;
-
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
 pub struct Day7 {
     positions: Vec<usize>,
@@ -28,7 +27,7 @@ impl Day7 {
     }
 
     fn median(&self) -> usize {
-        let mid = self.positions.len()/2;
+        let mid = self.positions.len() / 2;
 
         self.positions[mid]
     }
@@ -58,7 +57,7 @@ impl Day7 {
 
         for p in &self.positions {
             let diff: isize = ((*p as isize) - (pos as isize)).abs();
-            let delta: isize = diff*(diff+1)/2;
+            let delta: isize = diff * (diff + 1) / 2;
             // println!("Move from {} to {}: {} fuel", *p, pos, delta);
             used += delta;
         }
@@ -73,8 +72,8 @@ impl Day for Day7 {
     }
 
     fn part2(&self) -> Result<usize, &str> {
-        let ans1 = self.fuel_used2(self.mean() as usize);  // truncate
-        let ans2 = self.fuel_used2(1+self.mean() as usize);  // round up
+        let ans1 = self.fuel_used2(self.mean() as usize); // truncate
+        let ans2 = self.fuel_used2(1 + self.mean() as usize); // round up
 
         Ok(min(ans1, ans2))
     }

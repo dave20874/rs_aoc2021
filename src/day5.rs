@@ -1,9 +1,9 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 use crate::day::Day;
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
-use lazy_static::lazy_static;
+// use lazy_static::lazy_static;
 use regex::Regex;
 
 struct Map {
@@ -33,8 +33,7 @@ impl Map {
                 let pt = (x, y);
                 if self.vents.contains_key(&pt) {
                     print!("{}", self.vents.get(&pt).unwrap());
-                }
-                else {
+                } else {
                     print!(".");
                 }
             }
@@ -71,7 +70,8 @@ impl Day5 {
                         caps[1].parse::<usize>().unwrap(),
                         caps[2].parse::<usize>().unwrap(),
                         caps[3].parse::<usize>().unwrap(),
-                        caps[4].parse::<usize>().unwrap());
+                        caps[4].parse::<usize>().unwrap(),
+                    );
 
                     lines.push(line);
                 }
@@ -92,24 +92,44 @@ impl Day5 {
             let (x1, y1, x2, y2) = *line;
 
             // If not using diagonals, skip this entry
-            if !diagonals && (x1 != x2) && (y1 != y2) { continue; }
+            if !diagonals && (x1 != x2) && (y1 != y2) {
+                continue;
+            }
 
             // add points to the map
-            let x_incr = if x1 == x2 {0} else if x1 < x2 {1} else {-1};
-            let y_incr = if y1 == y2 {0} else if y1 < y2 {1} else {-1};
+            let x_incr = if x1 == x2 {
+                0
+            } else if x1 < x2 {
+                1
+            } else {
+                -1
+            };
+            let y_incr = if y1 == y2 {
+                0
+            } else if y1 < y2 {
+                1
+            } else {
+                -1
+            };
 
-            let mut x= x1 as isize;
+            let mut x = x1 as isize;
             let mut y = y1 as isize;
             let mut pt = (x as usize, y as usize);
-            if vents.contains_key(&pt) { vents.insert(pt, vents.get(&pt).unwrap()+1); }
-            else {vents.insert(pt, 1);}
+            if vents.contains_key(&pt) {
+                vents.insert(pt, vents.get(&pt).unwrap() + 1);
+            } else {
+                vents.insert(pt, 1);
+            }
 
             while !((x == x2 as isize) && (y == y2 as isize)) {
                 x += x_incr;
                 y += y_incr;
                 pt = (x as usize, y as usize);
-            if vents.contains_key(&pt) { vents.insert(pt, vents.get(&pt).unwrap()+1); }
-            else {vents.insert(pt, 1);}
+                if vents.contains_key(&pt) {
+                    vents.insert(pt, vents.get(&pt).unwrap() + 1);
+                } else {
+                    vents.insert(pt, 1);
+                }
             }
         }
 

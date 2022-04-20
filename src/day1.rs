@@ -1,6 +1,6 @@
+use crate::day::Day;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use crate::day::Day;
 
 pub struct Day1 {
     depths: Vec<usize>,
@@ -24,7 +24,7 @@ impl Day1 {
     fn increases(&self) -> usize {
         let mut count = 0;
         for n in 1..self.depths.len() {
-            if self.depths[n-1] < self.depths[n] {
+            if self.depths[n - 1] < self.depths[n] {
                 count += 1;
             }
         }
@@ -33,17 +33,17 @@ impl Day1 {
 
     fn avg_increases(&self, window: usize) -> usize {
         let mut avg_depths: Vec<f32> = Vec::new();
-        for n in 0..self.depths.len()-window+1 {
+        for n in 0..self.depths.len() - window + 1 {
             let mut sum = 0;
             for i in 0..window {
-                sum += self.depths[n+i];
+                sum += self.depths[n + i];
             }
-            avg_depths.push((sum as f32)/(window as f32));
+            avg_depths.push((sum as f32) / (window as f32));
         }
 
         let mut count = 0;
         for n in 1..avg_depths.len() {
-            if avg_depths[n-1] < avg_depths[n] {
+            if avg_depths[n - 1] < avg_depths[n] {
                 count += 1;
             }
         }

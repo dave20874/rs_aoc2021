@@ -1,8 +1,8 @@
 use std::collections::{HashMap, VecDeque};
 use std::fs::File;
 // use std::intrinsics::assume;
-use std::io::{BufRead, BufReader};
 use crate::day::Day;
+use std::io::{BufRead, BufReader};
 
 pub struct Day9 {
     height_map: HashMap<(usize, usize), usize>,
@@ -24,8 +24,7 @@ impl Day9 {
             row += 1;
             let l = line.unwrap();
             let mut col: usize = 0;
-            for c in l.chars()
-            {
+            for c in l.chars() {
                 col += 1;
                 let height = c.to_digit(10).unwrap() as usize;
                 height_map.insert((col, row), height);
@@ -34,7 +33,11 @@ impl Day9 {
         }
         let max_row = row;
 
-        Day9 { height_map, rows: max_row, cols: max_col}
+        Day9 {
+            height_map,
+            rows: max_row,
+            cols: max_col,
+        }
     }
 
     fn is_min(&self, coord: &(usize, usize)) -> bool {
@@ -42,7 +45,12 @@ impl Day9 {
         let row = coord.1;
         let center = self.height_map.get(coord);
 
-        for neighbor in [(col-1, row), (col+1, row), (col, row-1), (col, row+1)] {
+        for neighbor in [
+            (col - 1, row),
+            (col + 1, row),
+            (col, row - 1),
+            (col, row + 1),
+        ] {
             if self.height_map.contains_key(&neighbor) {
                 if self.height_map.get(&neighbor) <= center {
                     return false;
@@ -83,7 +91,7 @@ impl Day9 {
         drains
     }
 
-    fn basin_size(&self, lowest:(usize, usize)) -> usize {
+    fn basin_size(&self, lowest: (usize, usize)) -> usize {
         let mut to_check: VecDeque<(usize, usize)> = VecDeque::new();
         let mut in_basin: Vec<(usize, usize)> = Vec::new();
 
@@ -95,10 +103,11 @@ impl Day9 {
             // println!("Adding ({}, {})={} to basin.", next.0, next.1, height);
 
             for neighbor in [
-                (next.0+1, next.1),
-                (next.0-1, next.1),
-                (next.0, next.1+1),
-                (next.0, next.1-1)] {
+                (next.0 + 1, next.1),
+                (next.0 - 1, next.1),
+                (next.0, next.1 + 1),
+                (next.0, next.1 - 1),
+            ] {
                 // See that neighbor coordinate is on map
                 if !self.height_map.contains_key(&neighbor) {
                     continue;
@@ -143,12 +152,10 @@ impl Day9 {
                 largest[0] = largest[1];
                 largest[1] = largest[2];
                 largest[2] = size;
-            }
-            else if size > largest[1] {
+            } else if size > largest[1] {
                 largest[0] = largest[1];
                 largest[1] = size;
-            }
-            else if size > largest[0] {
+            } else if size > largest[0] {
                 largest[0] = size;
             }
         }
@@ -199,8 +206,8 @@ mod tests {
     // Test basin_size
     fn test_basin_size() {
         let d = Day9::load("data/day9_example1.txt");
-        assert_eq!(d.basin_size((2,1)), 3);
-        assert_eq!(d.basin_size((10,1)), 9);
+        assert_eq!(d.basin_size((2, 1)), 3);
+        assert_eq!(d.basin_size((10, 1)), 9);
         assert_eq!(d.basin_size((3, 3)), 14);
         assert_eq!(d.basin_size((7, 5)), 9);
     }
@@ -215,7 +222,7 @@ mod tests {
     // Test results based on my inputs.  Yours will be different.
     fn test_part2_1() {
         let d = Day9::load("data/day9_example1.txt");
-        assert_eq!(d.part2(), Ok(9*9*14));
+        assert_eq!(d.part2(), Ok(9 * 9 * 14));
     }
 
     #[test]

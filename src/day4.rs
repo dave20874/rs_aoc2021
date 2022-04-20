@@ -1,19 +1,19 @@
-use std::fs::File;
-use std::io::{BufRead, BufReader};
 use crate::day::Day;
 use std::collections::HashMap;
+use std::fs::File;
+use std::io::{BufRead, BufReader};
 
-use lazy_static::lazy_static;
+// use lazy_static::lazy_static;
 use regex::Regex;
 
 struct BingoCard {
     // maps numbers on the card to their coordinates.
-    values: HashMap<usize, (usize, usize)>
+    values: HashMap<usize, (usize, usize)>,
 }
 
 impl BingoCard {
     fn from_vecs(vecs: Vec<Vec<usize>>) -> BingoCard {
-        let mut values= HashMap::new();
+        let mut values = HashMap::new();
 
         for (row_no, row) in vecs.iter().enumerate() {
             for (col_no, value) in row.iter().enumerate() {
@@ -127,8 +127,7 @@ impl Day4 {
                 }
                 on_calls = false;
                 card_line = 0;
-            }
-            else {
+            } else {
                 // store values
                 // Do RE Magic.
                 let caps = ROW_RE.captures(&l);
@@ -177,7 +176,6 @@ impl Day for Day4 {
                 }
                 _ => { /* No win, ignore this card */ }
             }
-
         }
 
         Ok(win_score as usize)
@@ -197,7 +195,6 @@ impl Day for Day4 {
                 }
                 _ => { /* No win, ignore this card */ }
             }
-
         }
 
         Ok(win_score as usize)

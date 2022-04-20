@@ -1,7 +1,6 @@
+use crate::day::Day;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
-use crate::day::Day;
-
 
 pub struct Day6 {
     // Timers (Generations until spawning)
@@ -48,11 +47,10 @@ impl Day6 {
                 // pop from head
                 let timer = population.remove(0);
                 if timer == 0 {
-                    new_fish += 1;             // create a fish at end of this gen
-                    population.push(6);  // rollover this timer from 0 to 6
-                }
-                else {
-                    population.push(timer-1);  // timer ticks down.
+                    new_fish += 1; // create a fish at end of this gen
+                    population.push(6); // rollover this timer from 0 to 6
+                } else {
+                    population.push(timer - 1); // timer ticks down.
                 }
             }
 
@@ -80,7 +78,7 @@ impl Day6 {
 
             // in next generation, the number with timer=T is the number with timer=T=1 now.
             for t in 0..8 {
-                per_timer[t] = per_timer[t+1];
+                per_timer[t] = per_timer[t + 1];
             }
 
             // Take care of those spawning cases now.
@@ -126,7 +124,6 @@ mod tests {
         let d = Day6::load("data/day6_example1.txt");
         assert_eq!(d.sim(18), 26);
     }
-
 
     #[test]
     fn test_sim_smart() {

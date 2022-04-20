@@ -1,5 +1,10 @@
+#[macro_use]
+extern crate lazy_static;
+extern crate regex;
+
 mod day;
 mod day1;
+mod day10;
 mod day2;
 mod day3;
 mod day4;
@@ -11,6 +16,7 @@ mod day9;
 
 use day::Day;
 use day1::Day1;
+use day10::Day10;
 use day2::Day2;
 use day3::Day3;
 use day4::Day4;
@@ -45,16 +51,9 @@ fn main() {
     let day7 = Day7::load("data/day7_input.txt");
     let day8 = Day8::load("data/day8_input.txt");
     let day9 = Day9::load("data/day9_input.txt");
+    let day10 = Day10::load("data/day10_input.txt");
     let days: Vec<&dyn Day> = vec![
-        &day1,
-        &day2,
-        &day3,
-        &day4,
-        &day5,
-        &day6,
-        &day7,
-        &day8,
-        &day9,
+        &day1, &day2, &day3, &day4, &day5, &day6, &day7, &day8, &day9, &day10,
     ];
 
     let selected_day: Option<usize> = None;
@@ -62,11 +61,11 @@ fn main() {
         None => {
             // No day selected, do them all
             for (n, day) in days.iter().enumerate() {
-                do_day(n+1, *day);
+                do_day(n + 1, *day);
             }
         }
         Some(n) => {
-            do_day(n-1, days[n-1]);
+            do_day(n - 1, days[n - 1]);
         }
     }
 }

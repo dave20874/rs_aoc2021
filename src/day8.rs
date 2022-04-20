@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 use std::fs::File;
 // use std::intrinsics::assume;
-use std::io::{BufRead, BufReader};
 use crate::day::Day;
+use std::io::{BufRead, BufReader};
 
 struct Display {
     patterns: Vec<Vec<char>>,
@@ -62,14 +62,12 @@ impl Display {
                         // One segment in common with '1'.  This is the 6.
                         pat_to_value.insert(pattern, 6);
                         value_to_pat.insert(6, pattern);
-                    }
-                    else {
+                    } else {
                         if self.common_segs(pattern, value_to_pat[&4]) == 4 {
                             // Four segments in common with 4: This is the 9
                             pat_to_value.insert(pattern, 9);
                             value_to_pat.insert(9, pattern);
-                        }
-                        else {
+                        } else {
                             // Not four segments in common with 4: This is the 0
                             pat_to_value.insert(pattern, 0);
                             value_to_pat.insert(0, pattern);
@@ -81,14 +79,12 @@ impl Display {
                         // Two segments in common with '1'.  This is the 3.
                         pat_to_value.insert(pattern, 3);
                         value_to_pat.insert(3, pattern);
-                    }
-                    else {
+                    } else {
                         if self.common_segs(pattern, value_to_pat[&4]) == 2 {
                             // Two segments in common with 4: This is the 2
                             pat_to_value.insert(pattern, 2);
                             value_to_pat.insert(2, pattern);
-                        }
-                        else {
+                        } else {
                             // Not two segments in common with 4: This is the 5
                             pat_to_value.insert(pattern, 5);
                             value_to_pat.insert(5, pattern);
@@ -150,7 +146,10 @@ impl Day8 {
                 displayed.push(one_display);
             }
 
-            displays.push(Display {patterns, displayed});
+            displays.push(Display {
+                patterns,
+                displayed,
+            });
         }
 
         Day8 { displays }
@@ -172,7 +171,7 @@ impl Day8 {
     }
 
     fn sum_displays(&self) -> usize {
-        let mut sum= 0;
+        let mut sum = 0;
 
         for display in &self.displays {
             let value = display.decode();
