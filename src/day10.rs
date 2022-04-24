@@ -139,9 +139,9 @@ impl Day for Day10 {
 
     fn part2(&self) -> Result<usize, &str> {
         let complete_scores = self.complete_scores();
-        println!("Found {} complete scores.", complete_scores.len());
+        // println!("Found {} complete scores.", complete_scores.len());
         let median_index = complete_scores.len() / 2;
-        println!("Median index is {}.", median_index);
+        // println!("Median index is {}.", median_index);
         Ok(complete_scores[median_index])
     }
 }

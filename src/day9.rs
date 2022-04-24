@@ -6,15 +6,12 @@ use std::io::{BufRead, BufReader};
 
 pub struct Day9 {
     height_map: HashMap<(usize, usize), usize>,
-    cols: usize,
-    rows: usize,
 }
 
 impl Day9 {
     pub fn load(filename: &str) -> Day9 {
         // println!("Loading.");
         let mut height_map: HashMap<(usize, usize), usize> = HashMap::new();
-        let mut max_col: usize = 0;
 
         let file = File::open(filename).unwrap();
         let reader = BufReader::new(file);
@@ -29,14 +26,10 @@ impl Day9 {
                 let height = c.to_digit(10).unwrap() as usize;
                 height_map.insert((col, row), height);
             }
-            max_col = col;
         }
-        let max_row = row;
 
         Day9 {
             height_map,
-            rows: max_row,
-            cols: max_col,
         }
     }
 
@@ -184,8 +177,6 @@ mod tests {
     #[test]
     fn test_load() {
         let d = Day9::load("data/day9_example1.txt");
-        assert_eq!(d.rows, 5);
-        assert_eq!(d.cols, 10);
         assert_eq!(d.height_map.len(), 50);
     }
 
