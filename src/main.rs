@@ -15,6 +15,7 @@ mod day8;
 mod day9;
 mod day10;
 mod day11;
+mod day12;
 
 use day::Day;
 use day1::Day1;
@@ -28,6 +29,7 @@ use day8::Day8;
 use day9::Day9;
 use day10::Day10;
 use day11::Day11;
+use day12::Day12;
 
 fn do_day(n: usize, day: &dyn Day) {
     match day.part1() {
@@ -56,9 +58,10 @@ fn main() {
     let day9 = Day9::load("data/day9_input.txt");
     let day10 = Day10::load("data/day10_input.txt");
     let day11 = Day11::load("data/day11_input.txt");
+    let day12 = Day12::load("data/day12_input.txt");
     let days: Vec<&dyn Day> = vec![
         &day1, &day2, &day3, &day4, &day5, &day6, &day7, &day8, &day9, &day10,
-        &day11,
+        &day11, &day12,
     ];
 
     let selected_day: Option<usize> = None;
@@ -144,7 +147,6 @@ mod tests {
         assert_eq!(d.part1(), Ok(409));
         assert_eq!(d.part2(), Ok(1024649));
     }
-
 
     #[test]
     // Test results based on my inputs.  Yours will be different.
