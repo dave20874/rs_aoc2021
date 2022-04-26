@@ -212,9 +212,9 @@ mod tests {
     #[test]
     // Test results based on my inputs.  Yours will be different.
     fn test_part1() {
-        let d = Day8::load("data/day8_input.txt");
+        let d = Day8::load("data/day8_example1.txt");
         // > 296
-        assert_eq!(d.part1(), Ok(409));
+        assert_eq!(d.part1(), Ok(26));
     }
 
     #[test]
@@ -226,7 +226,7 @@ mod tests {
     #[test]
     // Test results based on my inputs.  Yours will be different.
     fn test_part2() {
-        let d = Day8::load("data/day8_input.txt");
-        assert_eq!(d.part2(), Ok(1024649));
+        let d = Day8::load("data/day8_example1.txt");
+        assert_eq!(d.part2(), Ok(61229));
     }
 }

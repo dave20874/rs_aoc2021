@@ -157,8 +157,8 @@ mod tests {
 
     #[test]
     fn test_part1() {
-        let d = Day11::load("data/day11_input.txt");
-        assert_eq!(d.part1(), Ok(1721));
+        let d = Day11::load("data/day11_example1.txt");
+        assert_eq!(d.part1(), Ok(1656));
     }
 
     #[test]
@@ -169,7 +169,7 @@ mod tests {
 
     #[test]
     fn test_part2() {
-        let d = Day11::load("data/day11_input.txt");
-        assert_eq!(d.part2(), Ok(298));
+        let d = Day11::load("data/day11_example1.txt");
+        assert_eq!(d.part2(), Ok(195));
     }
 }

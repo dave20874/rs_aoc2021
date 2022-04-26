@@ -117,14 +117,14 @@ mod tests {
     #[test]
     // Test results based on my inputs.  Yours will be different.
     fn test_part1() {
-        let d = Day7::load("data/day7_input.txt");
-        assert_eq!(d.part1(), Ok(355989));
+        let d = Day7::load("data/day7_example1.txt");
+        assert_eq!(d.part1(), Ok(37));
     }
 
     #[test]
     // Test results based on my inputs.  Yours will be different.
     fn test_part2() {
-        let d = Day7::load("data/day7_input.txt");
-        assert_eq!(d.part2(), Ok(102245489));
+        let d = Day7::load("data/day7_example1.txt");
+        assert_eq!(d.part2(), Ok(168));
     }
 }

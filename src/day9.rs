@@ -189,8 +189,8 @@ mod tests {
     #[test]
     // Test results based on my inputs.  Yours will be different.
     fn test_part1() {
-        let d = Day9::load("data/day9_input.txt");
-        assert_eq!(d.part1(), Ok(489));
+        let d = Day9::load("data/day9_example1.txt");
+        assert_eq!(d.part1(), Ok(15));
     }
 
     #[test]
@@ -211,15 +211,8 @@ mod tests {
 
     #[test]
     // Test results based on my inputs.  Yours will be different.
-    fn test_part2_1() {
+    fn test_part2() {
         let d = Day9::load("data/day9_example1.txt");
         assert_eq!(d.part2(), Ok(9 * 9 * 14));
-    }
-
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_part2() {
-        let d = Day9::load("data/day9_input.txt");
-        assert_eq!(d.part2(), Ok(1056330));
     }
 }

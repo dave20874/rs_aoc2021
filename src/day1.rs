@@ -83,12 +83,4 @@ mod tests {
         let d = Day1::load("data/day1_example1.txt");
         assert_eq!(d.avg_increases(3), 5);
     }
-
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_soln() {
-        let d = Day1::load("data/day1_input.txt");
-        assert_eq!(d.part1(), Ok(1301));
-        assert_eq!(d.part2(), Ok(1346));
-    }
 }

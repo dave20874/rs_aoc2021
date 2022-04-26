@@ -141,17 +141,4 @@ mod tests {
         assert_eq!(pos.2, 10); // final aim
     }
 
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_part1() {
-        let d = Day2::load("data/day2_input.txt");
-        assert_eq!(d.part1(), Ok(1383564));
-    }
-
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_part2() {
-        let d = Day2::load("data/day2_input.txt");
-        assert_eq!(d.part2(), Ok(1488311643));
-    }
 }

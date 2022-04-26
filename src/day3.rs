@@ -214,9 +214,6 @@ mod tests {
     fn test_part1() {
         let d = Day3::load("data/day3_example1.txt");
         assert_eq!(d.part1(), Ok(198));
-
-        let d = Day3::load("data/day3_input.txt");
-        assert_eq!(d.part1(), Ok(2972336));
     }
 
     #[test]
@@ -224,8 +221,5 @@ mod tests {
     fn test_part2() {
         let d = Day3::load("data/day3_example1.txt");
         assert_eq!(d.part2(), Ok(230));
-
-        let d = Day3::load("data/day3_input.txt");
-        assert_eq!(d.part2(), Ok(3368358));
     }
 }

@@ -3,8 +3,8 @@ extern crate lazy_static;
 extern crate regex;
 
 mod day;
+mod day_n;
 mod day1;
-
 mod day2;
 mod day3;
 mod day4;
@@ -74,3 +74,98 @@ fn main() {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day1() {
+        let d = Day1::load("data/day1_input.txt");
+        assert_eq!(d.part1(), Ok(1301));
+        assert_eq!(d.part2(), Ok(1346));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day2() {
+        let d = Day2::load("data/day2_input.txt");
+        assert_eq!(d.part1(), Ok(1383564));
+        assert_eq!(d.part2(), Ok(1488311643));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day3() {
+        let d = Day3::load("data/day3_input.txt");
+        assert_eq!(d.part1(), Ok(2972336));
+        assert_eq!(d.part2(), Ok(3368358));
+    }
+
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day4() {
+        let d = Day4::load("data/day4_input.txt");
+        assert_eq!(d.part1(), Ok(39902));
+        assert_eq!(d.part2(), Ok(26936));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day5() {
+        let d = Day5::load("data/day5_input.txt");
+        assert_eq!(d.part1(), Ok(6397));
+        assert_eq!(d.part2(), Ok(22335));
+    }
+
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day6() {
+        let d = Day6::load("data/day6_input.txt");
+        assert_eq!(d.part1(), Ok(372984));
+        assert_eq!(d.part2(), Ok(1681503251694));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day7() {
+        let d = Day7::load("data/day7_input.txt");
+        assert_eq!(d.part1(), Ok(355989));
+        assert_eq!(d.part2(), Ok(102245489));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day8() {
+        let d = Day8::load("data/day8_input.txt");
+        assert_eq!(d.part1(), Ok(409));
+        assert_eq!(d.part2(), Ok(1024649));
+    }
+
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day9() {
+        let d = Day9::load("data/day9_input.txt");
+        assert_eq!(d.part1(), Ok(489));
+        assert_eq!(d.part2(), Ok(1056330));
+    }
+
+    #[test]
+    fn test_day10() {
+        let d = Day10::load("data/day10_input.txt");
+        assert_eq!(d.part1(), Ok(370407));
+        assert_eq!(d.part2(), Ok(3249889609));
+    }
+
+    #[test]
+    fn test_day11() {
+        let d = Day11::load("data/day11_input.txt");
+        assert_eq!(d.part1(), Ok(1721));
+        assert_eq!(d.part2(), Ok(298));
+    }
+}
+
