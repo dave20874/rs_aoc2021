@@ -5,15 +5,47 @@ use std::collections::HashMap;
 use lazy_static::lazy_static;
 use regex::Regex;
 
-pub struct Day12<'a> {
-    nodes: Vec<&'a str>,
-    connected: HashMap<&'a str, Vec<&'a str>>,
+pub struct Day12 {
+    nodes: HashMap<String, usize>,
+    connected: HashMap<usize, Vec<usize>>,
 }
 
-impl Day12<'_> {
-    pub fn load<'a>(filename: &str) -> Day12<'a> {
-        let mut nodes: Vec<&'a str> = Vec::new();
-        let mut connected: HashMap<&'a str, Vec<&'a str>> = HashMap::new();
+impl Day12 {
+    fn new() -> Day12 {
+        Day12 { nodes: HashMap::new(), connected: HashMap::new() }
+    }
+
+    fn add_edge(& mut self, a: &String, b: &String) {
+        let a_index = match self.nodes.contains_key(a) {
+            true => *self.nodes.get(a).unwrap(),
+            false => {
+                println!("New node for a: {}", a);
+                let new_index = self.nodes.len();
+                self.nodes.insert(a.to_string(), new_index);
+                self.connected.insert(new_index, Vec::new());
+                new_index
+            }
+        };
+
+        let b_index = match self.nodes.contains_key(b) {
+            true => *self.nodes.get(b).unwrap(),
+            false => {
+                println!("New node for b: {}", b);
+                let new_index = self.nodes.len();
+                self.nodes.insert(b.to_string(), new_index);
+                self.connected.insert(new_index, Vec::new());
+                new_index
+            }
+        };
+
+        let a_connected = self.connected.get_mut(&a_index).unwrap();
+        a_connected.push(b_index);
+        let b_connected = self.connected.get_mut(&b_index).unwrap();
+        b_connected.push(a_index);
+    }
+
+    pub fn load(filename: &str) -> Day12 {
+        let mut day12 = Day12::new();
 
         lazy_static! {
             static ref LINE_RE: Regex =
@@ -28,34 +60,19 @@ impl Day12<'_> {
             let caps = LINE_RE.captures(&l);
             match caps {
                 Some(caps) => {
-                    // If either of these is a new name, add it to nodes
-                    let name: &'a str = &caps[1].to_string();
-                    if !nodes.contains(&name) {
-                        println!("Node: {}", &name);
-                        connected.insert(name, Vec::new());
-                        nodes.push(name);
-                        // TODO: Add name and empty vector to connected
-                    }
-
-                    let name: &'a str = &caps[2].to_string();
-                    if !nodes.contains(&name) {
-                        println!("Node: {}", &name);
-                        connected.insert(name, Vec::new());
-                        nodes.push(name);
-                        // TODO: Add name and empty vector to connected
-                    }
+                    day12.add_edge(&caps[1].to_string(), &caps[2].to_string());
                 }
                 None => {}
             }
         }
 
-        Day12 { nodes, connected }
+        day12
     }
 
     // TODO: Add methods of DayN
 }
 
-impl Day for Day12<'_> {
+impl Day for Day12 {
     fn part1(&self) -> Result<usize, &str> {
         Ok(1)
     }
