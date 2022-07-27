@@ -268,11 +268,5 @@ mod tests {
         assert_eq!(d.part1(), Ok(1588));
     }
 
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_soln() {
-        let d = Day14::load("data/day14_input.txt");
-        assert_eq!(d.part1(), Ok(2590));
-        assert_eq!(d.part2(), Ok(2875665202438));
-    }
+
 }

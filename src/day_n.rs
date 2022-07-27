@@ -59,12 +59,4 @@ mod tests {
     }
 
     // TODO: Add tests for methods
-
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_soln() {
-        let d = DayN::_load("data/dayN_example1.txt");
-        assert_eq!(d.part1(), Ok(1));
-        assert_eq!(d.part2(), Ok(2));
-    }
 }

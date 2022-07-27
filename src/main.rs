@@ -3,7 +3,7 @@ extern crate lazy_static;
 extern crate regex;
 
 mod day;
-mod day_n;
+// mod day_n;
 mod day1;
 mod day2;
 mod day3;
@@ -17,6 +17,8 @@ mod day10;
 mod day11;
 mod day12;
 mod day13;
+mod day14;
+mod day15;
 
 use day::Day;
 use day1::Day1;
@@ -32,6 +34,8 @@ use day10::Day10;
 use day11::Day11;
 use day12::Day12;
 use day13::Day13;
+use day14::Day14;
+use day15::Day15;
 
 fn do_day(n: usize, day: &dyn Day) {
     match day.part1() {
@@ -62,10 +66,13 @@ fn main() {
     let day11 = Day11::load("data/day11_input.txt");
     let day12 = Day12::load("data/day12_input.txt");
     let day13 = Day13::load("data/day13_input.txt");
+    let day14 = Day14::load("data/day14_input.txt");
+    let day15 = Day15::load("data/day15_input.txt");
     let days: Vec<&dyn Day> = vec![
         &day1, &day2, &day3, &day4, &day5, &day6, &day7, &day8, &day9, &day10,
         &day11, &day12,
-        &day13,
+        &day13, &day14,
+        &day15,
     ];
 
     let selected_day: Option<usize> = None;
@@ -172,6 +179,35 @@ mod tests {
         let d = Day11::load("data/day11_input.txt");
         assert_eq!(d.part1(), Ok(1721));
         assert_eq!(d.part2(), Ok(298));
+    }
+
+    #[test]
+    fn test_day12() {
+        let d = Day12::load("data/day12_input.txt");
+        assert_eq!(d.part1(), Ok(4691));
+        assert_eq!(d.part2(), Ok(140718));
+    }
+
+    #[test]
+    // Test results based on my inputs.  Yours will be different.
+    fn test_day13() {
+        let d = Day13::load("data/day13_input.txt");
+        assert_eq!(d.part1(), Ok(704));
+        assert_eq!(d.part2(), Ok(2));
+    }
+
+    #[test]
+    fn test_day14() {
+        let d = Day14::load("data/day14_input.txt");
+        assert_eq!(d.part1(), Ok(2590));
+        assert_eq!(d.part2(), Ok(2875665202438));
+    }
+
+    #[test]
+    fn test_day15() {
+        let d = Day15::load("data/day15_input.txt");
+        assert_eq!(d.part1(), Ok(540));
+        assert_eq!(d.part2(), Ok(2879));
     }
 }
 

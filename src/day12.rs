@@ -193,12 +193,4 @@ mod tests {
         let d = Day12::load("data/day12_example3.txt");
         assert_eq!(d.num_paths(true), 3509);
     }
-
-    #[test]
-    // Test results based on my inputs.  Yours will be different.
-    fn test_soln() {
-        let d = Day12::load("data/day12_input.txt");
-        assert_eq!(d.part1(), Ok(4691));
-        assert_eq!(d.part2(), Ok(140718));
-    }
 }
