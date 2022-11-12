@@ -16,6 +16,14 @@ enum Elt {
     COMPOUND(Box<Num>),
 }
 
+struct ExplodeTarget {
+    index1: usize,
+    incr1: isize,
+    index2: usize,
+    incr2: isize,
+    index_rm: usize,
+}
+
 impl Elt {
     pub fn magnitude(&self) -> usize {
         match self {
@@ -97,10 +105,25 @@ impl Num {
         num
     }
 
+    // Recursively probe a number to see if an explode operation is needed.
+    // If so, returns a tuple
+    fn probe_explode(&self, depth: isize, offset: isize) -> Option<ExplodeTarget> {
+
+    }
+
+
+
     // Attempt an "explode" operation.
     // Return true if an explode was processed, false otherwise
     pub fn explode(&mut self) -> bool {
-        // TODO
+        let explode_targets = self.probe_explode(1, 1);
+        match explode_targets {
+            None => false,
+            Some(target) => {
+                self.do_explode(1, 1, target);
+                true
+            }
+        }
         false
     }
 
