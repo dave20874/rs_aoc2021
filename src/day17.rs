@@ -194,8 +194,8 @@ mod tests {
         let (hit, apex, x, y) = d.test_shot(6, 10);
         assert_eq!(hit, false);
         assert_eq!(apex, 55);
-        assert_eq!(x, 1);
-        assert_eq!(y, 2);
+        assert_eq!(x, 21);
+        assert_eq!(y, -11);
 
         let (hit, apex, _, _) = d.test_shot(17, -4);
         assert_eq!(hit, false);
